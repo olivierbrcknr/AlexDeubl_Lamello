@@ -10,12 +10,14 @@ import Footer from '../components/footer'
 import ChoreoPart from '../components/ChoreoPart'
 import AddChoreoPartSelector from '../components/AddChoreoPartSelector'
 import OnDeviceChoreoDisplay from '../components/OnDeviceChoreoDisplay'
+import ChoreoCodeExport from '../components/ChoreoCodeExport'
 
 // variable for development
 const isDev = process.env.NODE_ENV === "development" ? true : false
 
 const Home = () => {
 
+  const [remoteName,setRemoteName] = useState("remote_1")
   const [choreography,setChoreography] = useState([])
   const [onDeviceChoreo,setOnDeviceChoreo] = useState([])
   const [newChoreoPart,setNewChoreoPart] = useState({
@@ -109,7 +111,9 @@ const Home = () => {
 
         </div>
 
-        <OnDeviceChoreoDisplay choreo={onDeviceChoreo} />
+        <ChoreoCodeExport remote={remoteName} choreo={choreography} />
+
+        <Footer />
 
       </div>
 

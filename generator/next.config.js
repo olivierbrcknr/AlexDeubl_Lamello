@@ -37,7 +37,7 @@ module.exports =
       })
 
       config.module.rules.push({
-        test: /\.md$/,
+        test: /\.(md|cpp)$/,
         use: 'raw-loader'
       })
 

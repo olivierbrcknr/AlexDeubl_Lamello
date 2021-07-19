@@ -11,7 +11,7 @@ const Footer = (props) => {
 
   return (
     <footer className={classes.join(' ')}>
-      A project by <a href="https://olivierbrueckner.de/">Olivier Brückner</a>
+      2021 &copy; <a href="https://olivierbrueckner.de/">Olivier Brückner</a>  — built for <a href="http://www.alexanderdeubl.com/">Alexander Deubl</a>
     </footer>
   )
 }

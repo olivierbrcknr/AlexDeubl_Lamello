@@ -12,4 +12,14 @@
   --color-choreo-pause: #f1c40f;
   --color-choreo-none: #ecf0f1;
 
+
+  --color-gray-superLight: #f8f8f8;
+  --color-gray-light: #eee;
+  --color-gray-dark: rgb(67, 79, 84);
+
+}
+
+
+@media (prefers-color-scheme: dark) {
+
 }

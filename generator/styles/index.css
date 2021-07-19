@@ -9,21 +9,29 @@ body {
   color: var(--color-black);
 }
 
+a {
+  color: inherit;
+}
+a:hover {
+  text-decoration: none;
+}
+
 #wrapper {
   padding: 20px;
 
   display: grid;
   grid-template-areas:
-    "choreo liveIndicator"
-    "choreo onDevice";
+    "choreo codeExport"
+    "footer footer";
   column-gap: 20px;
   row-gap: 20px;
   grid-template-rows: auto;
 
-  max-width: 800px;
+  max-width: 1200px;
+  height: 100vh;
   margin: 0 auto;
-  grid-template-columns: 1fr 220px;
-  grid-template-rows: 40px 1fr;
+  grid-template-columns: 320px 1fr;
+  grid-template-rows: 1fr 20px;
 
 }
 
@@ -36,32 +44,7 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
 .choreoBuilder {
   grid-area: choreo;
-}
-
-.choreoUpdateBtn {
-  padding: 20px 10px;
-  border-radius: 10px;
-  background: #34495e;
-  color: #FFF;
-  text-align: center;
-  margin-top: 20px;
-  border: 0.5px solid rgba(0, 0, 0, 0.12);
-  cursor: pointer;
-}
-.choreoUpdateBtn:active {
-  background: #2c3e50;
-}
-
-.isLiveControlIndicator {
-  grid-area: liveIndicator;
-  padding: 10px;
-  border-radius: 4px;
-  background: #ecf0f1;
-  border: 0.5px solid rgba(0, 0, 0, 0.12);
-  cursor: pointer;
-}
-.isLiveControlIndicator.isLive {
-  background: #2ecc71;
 }

@@ -1,0 +1,45 @@
+.ChoreoCodeExport {
+  border: solid 1px var(--color-gray-light);
+  border-radius: 4px;
+  overflow: hidden;
+  grid-area: codeExport;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.title {
+  color: var(--color-gray-dark);
+  padding: 0.5em;
+  border-bottom: solid 1px var(--color-gray-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyCodeBtn {
+  cursor: pointer;
+  font-size: 13px;
+  border: solid 1px var(--color-gray-light);
+  padding: 4px;
+  border-radius: 2px;
+}
+.copyCodeBtn:hover {
+  background: var(--color-gray-superLight);
+}
+.copyCodeBtn:active {
+  background: var(--color-gray-light);
+}
+
+.codeContainer {
+  overflow-y: scroll;
+}
+
+.code {
+  overflow-y: scroll;
+  font-family: var(--font-family-mono);
+}
+.code,
+.code * {
+  user-select: text;
+}
