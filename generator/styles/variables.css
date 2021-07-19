@@ -1,0 +1,15 @@
+:root {
+  /* Typography */
+  --font-family-reg: 'IBM Plex Sans', sans-serif;
+  --font-family-mono: 'IBM Plex Mono', monospace;
+
+  /* Colors */
+  --color-white: #F7FAFC;
+  --color-black: #061424;
+
+  --color-choreo-up: #3498db;
+  --color-choreo-down: #e74c3c;
+  --color-choreo-pause: #f1c40f;
+  --color-choreo-none: #ecf0f1;
+
+}

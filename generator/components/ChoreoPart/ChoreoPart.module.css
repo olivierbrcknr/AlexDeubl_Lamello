@@ -1,0 +1,41 @@
+.ChoreoPart {
+  padding: 10px;
+  border-radius: 10px;
+  background: #EEE;
+  margin-bottom: 10px;
+  overflow: hidden;
+
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+}
+.typeDown {
+  background: var(--color-choreo-down);
+}
+
+.typeUp {
+  background: var(--color-choreo-up);
+}
+
+.typePause {
+  background: var(--color-choreo-pause);
+}
+
+.typeNone {
+  background: var(--color-choreo-none);
+}
+
+
+.removeBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 0.5px solid rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+.removeBtn:hover {
+  background:  #00000022;
+}
