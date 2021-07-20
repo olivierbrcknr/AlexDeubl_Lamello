@@ -6,7 +6,7 @@ import { arduinoLight } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import styles from './ChoreoCodeExport.module.css'
 
 
-import baseCode from './base.cpp'
+import baseCode from './base_MultiRemote.cpp'
 
 const ChoreoCodeExport = (props) => {
 
@@ -18,38 +18,39 @@ const ChoreoCodeExport = (props) => {
 
   props.choreo.map( (c,k) =>{
 
+    let command = ""
+
     switch( c.type ){
       case 'up':
-        choreoCode += `
-  // Press "Up" button, then wait for ${c.duration} seconds
-  sendCommand("Up\\n");
-  delay(${c.duration * 1000});
-        `
+        choreoCode += `\n  // Press "Up" button, then wait for ${c.duration} seconds`
+        command = "Up"
         break
       case 'down':
-        choreoCode += `
-  // Press "Down" button, then wait for ${c.duration} seconds
-  sendCommand("Down\\n");
-  delay(${c.duration * 1000});
-        `
+        choreoCode += `\n  // Press "Down" button, then wait for ${c.duration} seconds`
+        command = "Down"
         break
       case 'pause':
-        choreoCode += `
-  // Wait for ${c.duration} seconds
-  delay(${c.duration * 1000});
-        `
+        choreoCode += `\n  // Wait for ${c.duration} seconds`
         break
       case 'stop':
-        choreoCode += `
-  // Press "My" button to stop, then wait for ${c.duration} seconds
-  sendCommand("My\\n");
-  delay(${c.duration * 1000});
-        `
+        choreoCode += `\n  // Press "My" button to stop, then wait for ${c.duration} seconds`
+        command = "My"
         break
       default:
 
         break
     }
+
+    if( c.type !== "pause" ){
+      /*for(let i = 0; i < c.remotes.length; i++){
+        choreoCode += `\n  sendCommand("${command}", ${c.remotes[i]}); // Remote ${c.remotes[i]}`
+      }*/
+      choreoCode += `
+  int remotesCommand_${k}[${c.remotes.length}] = {${c.remotes.join(',')}}; // Remotes ${c.remotes.join(',')}
+  sendCommand("${command}", remotesCommand_${k}, ${c.remotes.length});`
+    }
+
+    choreoCode +=`\n  delay(${c.duration * 1000});\n`
 
   })
 

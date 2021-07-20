@@ -24,3 +24,4 @@ yarn-error.log*
 .env.build
 
 .vercel
+generator/components/ChoreoCodeExport/base_MultiRemote_BU.cpp

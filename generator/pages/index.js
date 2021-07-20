@@ -22,7 +22,8 @@ const Home = () => {
   const [onDeviceChoreo,setOnDeviceChoreo] = useState([])
   const [newChoreoPart,setNewChoreoPart] = useState({
     type: null,
-    duration: null
+    duration: null,
+    remotes: []
   })
 
   let classes = [];
@@ -43,13 +44,20 @@ const Home = () => {
 
   // functions ———————————————————————————————
 
-  const changeCoreoPart = (val,isDuration) => {
+  const changeCoreoPart = (val,type) => {
     let interimPart = {...newChoreoPart}
 
-    if( isDuration ){
-      interimPart.duration = parseInt(val)
-    }else{
-      interimPart.type = val
+    switch( type ){
+      case "duration":
+        interimPart.duration = parseInt(val)
+        break
+      case "remotes":
+        interimPart.remotes = [...val]
+        break
+      case "type":
+      default:
+        interimPart.type = val
+        break
     }
 
     setNewChoreoPart( interimPart )
@@ -59,7 +67,7 @@ const Home = () => {
   // add new choreo part
   const addChoreoPart = () => {
 
-    if( newChoreoPart.type && newChoreoPart.duration ){
+    if( newChoreoPart.type && newChoreoPart.duration && newChoreoPart.remotes.length > 0 ){
       let interimChoreo = [...choreography]
       interimChoreo.push( {...newChoreoPart} )
       setChoreography( interimChoreo )
@@ -87,8 +95,7 @@ const Home = () => {
     return <ChoreoPart
              key={`Choreo-Part-${k}`}
              passKey={`Choreo-Part-${k}`}
-             type={c.type}
-             duration={c.duration}
+             choreoVal={c}
              removePart={()=>removeChoreoPart(k)} />
 
   })
@@ -106,7 +113,7 @@ const Home = () => {
           {currentChoreo}
 
           <AddChoreoPartSelector
-            changePart={(val,isDuration)=>changeCoreoPart(val,isDuration)}
+            changePart={(val,type)=>changeCoreoPart(val,type)}
             addPart={addChoreoPart} />
 
         </div>

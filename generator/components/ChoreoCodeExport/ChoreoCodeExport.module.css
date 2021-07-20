@@ -37,9 +37,11 @@
 
 .code {
   overflow-y: scroll;
-  font-family: var(--font-family-mono);
+  font-size: 13px;
+  line-height: 1.5;
 }
 .code,
 .code * {
   user-select: text;
+  font-family: var(--font-family-mono);
 }

@@ -1,3 +1,8 @@
+/*
+ * This code works with an ESP32
+ * it uses NVS
+ */
+
 // Include required libraries
 #include <NVSRollingCodeStorage.h>
 #include <ELECHOUSE_CC1101_SRC_DRV.h>

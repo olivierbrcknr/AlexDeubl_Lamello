@@ -6,7 +6,7 @@ const ChoreoPart = (props) => {
 
   let classes = [styles.ChoreoPart]
 
-  switch( props.type ){
+  switch( props.choreoVal.type ){
     case 'up':
       classes.push( styles.typeDown )
       break
@@ -14,6 +14,7 @@ const ChoreoPart = (props) => {
       classes.push( styles.typeUp )
       break
     case 'pause':
+    case 'stop':
       classes.push( styles.typePause )
       break
     default:
@@ -22,8 +23,7 @@ const ChoreoPart = (props) => {
   }
 
   return <div className={classes.join(' ')} key={props.passKey}>
-      {props.type} — {props.duration}s
-
+      {props.choreoVal.type} — {props.choreoVal.duration}s — {props.choreoVal.remotes.join(', ')}
       <div className={styles.removeBtn}
         onClick={()=>props.removePart()}>
         ×

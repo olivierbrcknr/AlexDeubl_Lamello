@@ -2,15 +2,20 @@ import React, { useEffect, useState, useRef } from 'react'
 
 import styles from './AddChoreoPartSelector.module.css'
 
-const types = ["up","down","pause"]
+const types = ["up","down","pause","stop"]
 
 const AddChoreoPartSelector = (props) => {
 
   const [type,setType] = useState("pause")
+  const [remotes,setRemotes] = useState([])
 
   useEffect(()=>{
-    props.changePart(type,false)
+    props.changePart(type,"type")
   },[type])
+
+  useEffect(()=>{
+    props.changePart(remotes,"remotes")
+  },[remotes])
 
 
   let classes = [styles.AddChoreoPartSelector]
@@ -31,16 +36,57 @@ const AddChoreoPartSelector = (props) => {
 
   })
 
+  let remotesSelectElements = []
+
+  for (let i = 1; i <= 4; i++){
+
+    let isChecked = remotes.includes(i)
+
+    const remoteSelector = <div key={`remoteSelectorTab-${i}`}>
+
+              <input
+                id={`remoteID-${i}`}
+                value={isChecked}
+                type="checkbox"
+                onChange={(e)=>{
+
+                  let selectedRemotes = remotes
+
+                  if( selectedRemotes.includes(i) ){
+                    selectedRemotes = selectedRemotes.filter((value, index, arr) => {
+                      return value !== i
+                    });
+
+                  }else{
+                    selectedRemotes.push(i)
+                  }
+
+                  selectedRemotes.sort()
+
+                  setRemotes( [...selectedRemotes] )
+                }} />
+              <label htmlFor={`remoteID-${i}`} >
+                Remote {i}
+              </label>
+            </div>
+
+    remotesSelectElements.push(remoteSelector)
+  }
+
   return <div className={classes.join(' ')}>
 
       <div className={styles.typeSelector}>
         {selectors}
       </div>
 
+      <div className={styles.remoteSelector}>
+        {remotesSelectElements}
+      </div>
+
       <input type="number"
         defaultValue={30}
         className={styles.durationInput}
-        onChange={e=>props.changePart(e.target.value,true)} />
+        onChange={e=>props.changePart(e.target.value,"duration")} />
 
       seconds
 
