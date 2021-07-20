@@ -5,6 +5,11 @@
   margin-bottom: 10px;
   overflow: hidden;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 40px;
+
   border: 0.5px solid rgba(0, 0, 0, 0.12);
 }
 .typeDown {
@@ -19,10 +24,47 @@
   background: var(--color-choreo-pause);
 }
 
+.typeStop {
+  background: var(--color-choreo-stop);
+}
+
 .typeNone {
   background: var(--color-choreo-none);
 }
 
+
+.typeSelector,
+.duration {
+  border-radius: 2px;
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+  background: #FFFFFF55;
+}
+
+.duration {
+  margin: 0 8px;
+  max-width: 60px;
+}
+
+.remotes {
+  display: flex;
+}
+
+.remote {
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #00000022;
+  margin: 0 2px;
+  font-size: 13px;
+  opacity: 0.2;
+}
+
+.remote_isActive {
+  opacity: 1;
+}
 
 .removeBtn {
   position: absolute;

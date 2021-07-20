@@ -44,7 +44,7 @@ const Home = () => {
 
   // functions ———————————————————————————————
 
-  const changeCoreoPart = (val,type) => {
+  const changeNewChoreoPart = (val,type) => {
     let interimPart = {...newChoreoPart}
 
     switch( type ){
@@ -87,6 +87,50 @@ const Home = () => {
 
   }
 
+  const changeChoreoPart = (index,val,type) => {
+
+    let interimChoreo = [...choreography]
+
+    switch( type ){
+      case "type":
+        interimChoreo[index].type = val
+        break
+      case "duration":
+        interimChoreo[index].duration = parseInt(val)
+        if( isNaN( interimChoreo[index].duration ) ){
+          interimChoreo[index].duration = 0
+        }
+        break
+      case "remotes":
+
+        let interimRemotes = interimChoreo[index].remotes
+
+        if( interimChoreo[index].remotes.includes( val ) ){
+          if( interimChoreo[index].remotes.length > 1 ){
+            interimRemotes = interimRemotes.filter((v) => {
+              return v !== val
+            });
+          }
+        }else{
+          interimRemotes.push(val)
+        }
+
+        interimRemotes = interimRemotes.sort()
+        interimChoreo[index].remotes = [...interimRemotes]
+
+        break
+      default:
+
+        break
+    }
+
+
+    console.log(index,val,type)
+
+
+    setChoreography( interimChoreo )
+  }
+
 
   // Render ———————————————————————————————
 
@@ -96,7 +140,8 @@ const Home = () => {
              key={`Choreo-Part-${k}`}
              passKey={`Choreo-Part-${k}`}
              choreoVal={c}
-             removePart={()=>removeChoreoPart(k)} />
+             removePart={()=>removeChoreoPart(k)}
+             changePart={(val,type)=>changeChoreoPart(k,val,type)} />
 
   })
 
@@ -113,7 +158,7 @@ const Home = () => {
           {currentChoreo}
 
           <AddChoreoPartSelector
-            changePart={(val,type)=>changeCoreoPart(val,type)}
+            changePart={(val,type)=>changeNewChoreoPart(val,type)}
             addPart={addChoreoPart} />
 
         </div>

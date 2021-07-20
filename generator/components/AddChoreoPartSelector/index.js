@@ -53,7 +53,7 @@ const AddChoreoPartSelector = (props) => {
                   let selectedRemotes = remotes
 
                   if( selectedRemotes.includes(i) ){
-                    selectedRemotes = selectedRemotes.filter((value, index, arr) => {
+                    selectedRemotes = selectedRemotes.filter((value) => {
                       return value !== i
                     });
 
@@ -84,6 +84,8 @@ const AddChoreoPartSelector = (props) => {
       </div>
 
       <input type="number"
+        min={0}
+        max={3600}
         defaultValue={30}
         className={styles.durationInput}
         onChange={e=>props.changePart(e.target.value,"duration")} />
