@@ -1,5 +1,6 @@
 // React
 import React, { useEffect, useState, useRef } from 'react'
+import { toast, ToastContainer } from 'react-nextjs-toast'
 
 // Next
 import Link from 'next/link'
@@ -74,6 +75,12 @@ const Home = () => {
       console.log("Part added")
     }else{
       console.log("☝️ There is something missing!")
+      toast.notify('☝️ There is something missing!', {
+        duration: 2,
+        type: "error",
+        title: "Error",
+        position: "top"
+      })
     }
 
   }
@@ -163,11 +170,21 @@ const Home = () => {
 
         </div>
 
-        <ChoreoCodeExport remote={remoteName} choreo={choreography} />
+        <ChoreoCodeExport
+          remote={remoteName}
+          choreo={choreography}
+          onCopy={()=>toast.notify('✅ copied!', {
+              duration: 2,
+              type: "success",
+              title: "Success",
+              position: "top"
+            })}  />
 
         <Footer />
 
       </div>
+
+      <ToastContainer align={"center"} position={"top"} />
 
     </div>
   )

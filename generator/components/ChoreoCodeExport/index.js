@@ -63,7 +63,10 @@ const ChoreoCodeExport = (props) => {
       <div className={styles.title}>
         Generated Code
 
-        <div className={styles.copyCodeBtn} onClick={() => {navigator.clipboard.writeText(generatedCode)}}>
+        <div className={styles.copyCodeBtn} onClick={() => {
+          navigator.clipboard.writeText(generatedCode)
+          props.onCopy()
+        }}>
           Copy Code
         </div>
       </div>

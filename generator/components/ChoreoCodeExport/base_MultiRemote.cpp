@@ -49,13 +49,17 @@ void sendCommand(String string, int remotesArray[], int numOfRemotes) {
       case 2 : somfyRemote2.sendCommand(command, 1);
       case 3 : somfyRemote3.sendCommand(command, 1);
       case 4 : somfyRemote4.sendCommand(command, 1);
+
+      Serial.print("Remote ");
+      Serial.print(remotesArray[i]);
+      Serial.print(" sent command: ");
+      Serial.println(string);
     }
   }
 
   ELECHOUSE_cc1101.setSidle();
 
-  Serial.print("Sent command: ");
-  Serial.println(string);
+
 }
 
 // the acutal choreography —————————————————————————————————————————

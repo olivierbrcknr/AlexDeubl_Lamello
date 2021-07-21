@@ -60,6 +60,7 @@
   margin: 0 2px;
   font-size: 13px;
   opacity: 0.2;
+  cursor: pointer;
 }
 
 .remote_isActive {

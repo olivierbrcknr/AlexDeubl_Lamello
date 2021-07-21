@@ -47,7 +47,7 @@ const ChoreoPart = (props) => {
 
 
   let typeSelectorOptions = types.map( (t,k)=>{
-    return <option value={t}>
+    return <option value={t} key={props.passKey+'-option-'+t}>
       {t}
     </option>
   } )
