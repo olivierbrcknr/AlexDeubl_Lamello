@@ -12,6 +12,7 @@ import ChoreoPart from '../components/ChoreoPart'
 import AddChoreoPartSelector from '../components/AddChoreoPartSelector'
 import OnDeviceChoreoDisplay from '../components/OnDeviceChoreoDisplay'
 import ChoreoCodeExport from '../components/ChoreoCodeExport'
+import ChoreoVisualizer from '../components/ChoreoVisualizer'
 
 // variable for development
 const isDev = process.env.NODE_ENV === "development" ? true : false
@@ -159,6 +160,8 @@ const Home = () => {
       <Head title="Home" />
 
       <div id="wrapper">
+
+        <ChoreoVisualizer choreo={choreography} />
 
         <div className="choreoBuilder">
 

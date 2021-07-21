@@ -1,0 +1,58 @@
+.ChoreoVisualizer {
+  grid-area: visualizer;
+  font-size: 10px;
+
+}
+
+.stepsContainer {
+  display: flex;
+}
+
+.step {
+  border-right: solid 1px #bbb;
+  padding-bottom: 10px;
+}
+
+.stepLabel {
+  position: absolute;
+  bottom: 0;
+  right: 2px;
+}
+
+.remote {
+  height: 6px;
+  margin-bottom: 8px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+}
+
+.totalTime {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-weight: 600;
+}
+
+
+
+
+.typeDown .remote.remoteIsActive {
+  background: var(--color-choreo-down);
+}
+
+.typeUp .remote.remoteIsActive {
+  background: var(--color-choreo-up);
+}
+
+.typePause .remote.remoteIsActive {
+  background: var(--color-choreo-pause);
+}
+
+.typeStop .remote.remoteIsActive {
+  background: var(--color-choreo-stop);
+}
+
+.typeNone .remote.remoteIsActive {
+  background: var(--color-choreo-none);
+}
