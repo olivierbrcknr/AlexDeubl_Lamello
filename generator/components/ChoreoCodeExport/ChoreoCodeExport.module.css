@@ -45,3 +45,17 @@
   user-select: text;
   font-family: var(--font-family-mono);
 }
+
+
+
+
+@media (prefers-color-scheme: dark) {
+  .codeContainer,
+  .codeContainer pre,
+  .code,
+  .code * {
+    background: #010b17 !important;
+    color: #576266;
+  }
+}
+

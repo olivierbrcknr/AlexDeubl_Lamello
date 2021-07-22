@@ -23,9 +23,9 @@ const Home = () => {
   const [choreography,setChoreography] = useState([])
   const [onDeviceChoreo,setOnDeviceChoreo] = useState([])
   const [newChoreoPart,setNewChoreoPart] = useState({
-    type: null,
-    duration: null,
-    remotes: []
+    type: 'up',
+    duration: 10,
+    remotes: [1]
   })
 
   let classes = [];
@@ -111,7 +111,7 @@ const Home = () => {
         break
       case "remotes":
 
-        let interimRemotes = interimChoreo[index].remotes
+        let interimRemotes = [...interimChoreo[index].remotes]
 
         if( interimChoreo[index].remotes.includes( val ) ){
           if( interimChoreo[index].remotes.length > 1 ){
@@ -128,13 +128,9 @@ const Home = () => {
 
         break
       default:
-
+        // do nothing
         break
     }
-
-
-    console.log(index,val,type)
-
 
     setChoreography( interimChoreo )
   }
@@ -167,9 +163,14 @@ const Home = () => {
 
           {currentChoreo}
 
-          <AddChoreoPartSelector
+          {/*<AddChoreoPartSelector
+            currentSelection={newChoreoPart}
             changePart={(val,type)=>changeNewChoreoPart(val,type)}
-            addPart={addChoreoPart} />
+            addPart={addChoreoPart} />*/}
+
+          <div className={"addPartButton"} onClick={()=>addChoreoPart()}>
+            Add another part
+          </div>
 
         </div>
 

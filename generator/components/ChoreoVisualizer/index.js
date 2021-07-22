@@ -18,10 +18,10 @@ const ChoreoVisualizer = (props) => {
     let stepClasses = [styles.step]
 
     switch( c.type ){
-      case 'up':
+      case 'down':
         stepClasses.push( styles.typeDown )
         break
-      case 'down':
+      case 'up':
         stepClasses.push( styles.typeUp )
         break
       case 'pause':
@@ -39,7 +39,7 @@ const ChoreoVisualizer = (props) => {
 
     for ( let r = 1; r <= 4; r++ ){
 
-      remoteVis.push( <div className={`${styles.remote} ${ c.remotes.includes(r) ? styles.remoteIsActive : "" }`}>{r}</div> )
+      remoteVis.push( <div className={`${styles.remote} ${ c.remotes.includes(r) || c.type === 'pause' ? styles.remoteIsActive : "" }`}>{/*r*/}</div> )
     }
 
     const stepWidth = c.duration / totalTime * 100 + '%'
@@ -49,7 +49,7 @@ const ChoreoVisualizer = (props) => {
     }}>
 
       <div className={styles.stepLabel}>
-        {c.type} — {c.duration}s
+        {c.type} {c.duration}s
       </div>
 
       {remoteVis}
@@ -57,7 +57,18 @@ const ChoreoVisualizer = (props) => {
 
   })
 
+
+  let remoteLabels = []
+
+  for ( let r = 1; r <= 4; r++ ){
+    remoteLabels.push( <div className={styles.remoteLabel}>Remote {r}</div> )
+  }
+
   return <div className={classes.join(' ')}>
+
+    <div className={styles.remoteLabels}>
+      {remoteLabels}
+    </div>
 
     <div className={styles.stepsContainer}>
       {choreoSteps}

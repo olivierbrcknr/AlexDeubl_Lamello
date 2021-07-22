@@ -6,7 +6,7 @@
   overflow: hidden;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding-right: 40px;
 
@@ -32,6 +32,12 @@
   background: var(--color-choreo-none);
 }
 
+.ChoreoPart select,
+.ChoreoPart input {
+  font-family: var(--font-family-reg);
+  color: var(--color-black);
+}
+
 
 .typeSelector,
 .duration {
@@ -46,6 +52,7 @@
 }
 
 .remotes {
+  margin-left: auto;
   display: flex;
 }
 

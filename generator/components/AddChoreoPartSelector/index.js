@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React from 'react'
 
 import styles from './AddChoreoPartSelector.module.css'
 
@@ -6,30 +6,18 @@ const types = ["up","down","pause","stop"]
 
 const AddChoreoPartSelector = (props) => {
 
-  const [type,setType] = useState("pause")
-  const [remotes,setRemotes] = useState([])
-
-  useEffect(()=>{
-    props.changePart(type,"type")
-  },[type])
-
-  useEffect(()=>{
-    props.changePart(remotes,"remotes")
-  },[remotes])
-
-
   let classes = [styles.AddChoreoPartSelector]
 
   const selectors = types.map((t,k)=>{
 
     let tabClasses = [styles.typeSelectorTab]
 
-    if( type === t ){
+    if( props.currentSelection.type === t ){
       tabClasses.push( styles.typeSelectorTabisCurrent )
     }
 
     return <div key={`typeSelectorTab-${k}`}
-              onClick={()=>setType(t)}
+              onClick={()=>props.changePart(t,"type")}
               className={tabClasses.join(' ')}>
               {t}
             </div>
@@ -40,35 +28,35 @@ const AddChoreoPartSelector = (props) => {
 
   for (let i = 1; i <= 4; i++){
 
-    let isChecked = remotes.includes(i)
+    let isChecked = props.currentSelection.remotes.includes(i)
 
-    const remoteSelector = <div key={`remoteSelectorTab-${i}`}>
+    const remoteSelector = <label htmlFor={`remoteID-${i}`} className={styles.remoteSelectorElement} key={`remoteSelectorTab-${i}`} >
+                <input
+                  id={`remoteID-${i}`}
+                  checked={isChecked}
+                  type="checkbox"
+                  onChange={(e)=>{
 
-              <input
-                id={`remoteID-${i}`}
-                value={isChecked}
-                type="checkbox"
-                onChange={(e)=>{
+                    let selectedRemotes = props.currentSelection.remotes
 
-                  let selectedRemotes = remotes
+                    if( selectedRemotes.includes(i) ){
+                      selectedRemotes = selectedRemotes.filter((value) => {
+                        return value !== i
+                      });
 
-                  if( selectedRemotes.includes(i) ){
-                    selectedRemotes = selectedRemotes.filter((value) => {
-                      return value !== i
-                    });
+                    }else{
+                      selectedRemotes.push(i)
+                    }
 
-                  }else{
-                    selectedRemotes.push(i)
-                  }
+                    selectedRemotes.sort()
 
-                  selectedRemotes.sort()
+                    props.changePart([...selectedRemotes],"remotes")
 
-                  setRemotes( [...selectedRemotes] )
-                }} />
-              <label htmlFor={`remoteID-${i}`} >
+                  }} />
+
                 Remote {i}
               </label>
-            </div>
+
 
     remotesSelectElements.push(remoteSelector)
   }
@@ -86,7 +74,7 @@ const AddChoreoPartSelector = (props) => {
       <input type="number"
         min={0}
         max={3600}
-        defaultValue={30}
+        defaultValue={props.currentSelection.duration}
         className={styles.durationInput}
         onChange={e=>props.changePart(e.target.value,"duration")} />
 

@@ -7,6 +7,7 @@
 body {
   font-family: var(--font-family-reg);
   color: var(--color-black);
+  background: var(--color-white);
 }
 
 a {
@@ -38,14 +39,31 @@ a:hover {
 
 @media screen and (max-width: 620px) {
   #wrapper {
+    height: initial;
     grid-template-areas:
-      "liveIndicator"
+      "visualizer"
       "choreo"
-      "onDevice";
+      "codeExport"
+      "footer";
     grid-template-columns: 1fr;
+
+    grid-template-rows: 60px auto 1fr 20px;
   }
 }
 
 .choreoBuilder {
   grid-area: choreo;
+}
+
+
+.addPartButton {
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--color-gray-light);
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  text-align: center;
+}
+.addPartButton:active {
+  background: var(--color-gray-medium);
 }

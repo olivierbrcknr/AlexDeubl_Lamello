@@ -10,10 +10,10 @@ const ChoreoPart = (props) => {
   let classes = [styles.ChoreoPart]
 
   switch( props.choreoVal.type ){
-    case 'up':
+    case 'down':
       classes.push( styles.typeDown )
       break
-    case 'down':
+    case 'up':
       classes.push( styles.typeUp )
       break
     case 'pause':
@@ -67,9 +67,10 @@ const ChoreoPart = (props) => {
         defaultValue={props.choreoVal.duration}
         className={styles.duration}
         onChange={e=>props.changePart(e.target.value,"duration")} />
+      sec
 
       <div className={styles.remotes}>
-        {remoteSelector}
+        {props.choreoVal.type !== 'pause' ? remoteSelector : null}
       </div>
 
       <div className={styles.removeBtn}
