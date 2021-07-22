@@ -23,7 +23,7 @@ const Home = () => {
   const [choreography,setChoreography] = useState([])
   const [onDeviceChoreo,setOnDeviceChoreo] = useState([])
   const [newChoreoPart,setNewChoreoPart] = useState({
-    type: 'up',
+    type: 'pause',
     duration: 10,
     remotes: [1]
   })
@@ -69,20 +69,29 @@ const Home = () => {
   // add new choreo part
   const addChoreoPart = () => {
 
-    if( newChoreoPart.type && newChoreoPart.duration && newChoreoPart.remotes.length > 0 ){
-      let interimChoreo = [...choreography]
-      interimChoreo.push( {...newChoreoPart} )
-      setChoreography( interimChoreo )
-      console.log("Part added")
-    }else{
-      console.log("☝️ There is something missing!")
-      toast.notify('☝️ There is something missing!', {
-        duration: 2,
-        type: "error",
-        title: "Error",
-        position: "top"
-      })
-    }
+    let interimChoreo = [...choreography]
+    interimChoreo.push( {...newChoreoPart} )
+    setChoreography( interimChoreo )
+    console.log("Part added")
+
+    // else{
+    //   console.log("☝️ There is something missing!")
+    //   toast.notify('☝️ There is something missing!', {
+    //     duration: 2,
+    //     type: "error",
+    //     title: "Error",
+    //     position: "top"
+    //   })
+    // }
+
+  }
+
+  const addStepAfter = (i) => {
+
+    let interimChoreo = [...choreography]
+    interimChoreo.splice((i+1), 0, {...newChoreoPart});
+    setChoreography( interimChoreo )
+    console.log("Part added after "+i)
 
   }
 
@@ -144,6 +153,7 @@ const Home = () => {
              key={`Choreo-Part-${k}`}
              passKey={`Choreo-Part-${k}`}
              choreoVal={c}
+             addStepAfter={()=>addStepAfter(k)}
              removePart={()=>removeChoreoPart(k)}
              changePart={(val,type)=>changeChoreoPart(k,val,type)} />
 

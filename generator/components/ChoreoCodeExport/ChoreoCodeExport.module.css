@@ -5,6 +5,7 @@
   grid-area: codeExport;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 

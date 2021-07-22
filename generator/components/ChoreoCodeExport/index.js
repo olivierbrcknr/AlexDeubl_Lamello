@@ -22,18 +22,19 @@ const ChoreoCodeExport = (props) => {
 
     switch( c.type ){
       case 'up':
-        choreoCode += `\n  // Press "Up" button, then wait for ${c.duration} seconds`
+        choreoCode += `\n  // Press "Up" button`
         command = "Up"
         break
       case 'down':
-        choreoCode += `\n  // Press "Down" button, then wait for ${c.duration} seconds`
+        choreoCode += `\n  // Press "Down" button`
         command = "Down"
         break
       case 'pause':
         choreoCode += `\n  // Wait for ${c.duration} seconds`
+        choreoCode +=`\n  delay(${c.duration * 1000});`
         break
       case 'stop':
-        choreoCode += `\n  // Press "My" button to stop, then wait for ${c.duration} seconds`
+        choreoCode += `\n  // Press "My" button to stop`
         command = "My"
         break
       default:
@@ -50,7 +51,7 @@ const ChoreoCodeExport = (props) => {
   sendCommand("${command}", remotesCommand_${k}, ${c.remotes.length});`
     }
 
-    choreoCode +=`\n  delay(${c.duration * 1000});\n`
+    choreoCode += "\n"
 
   })
 

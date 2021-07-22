@@ -12,14 +12,6 @@
   padding: 8px 0 16px 0;
 }
 
-.step {
-  border-right: solid 1px var(--color-gray-medium);
-  padding-bottom: 10px;
-}
-.step:last-child {
-  border: none;
-}
-
 .stepLabel {
   position: absolute;
   bottom: 0;
@@ -53,24 +45,42 @@
 }
 
 
+.typePause.step {
+  border-right: solid 1px var(--color-gray-medium);
+  padding-bottom: 10px;
+}
+.typePause.step:last-child {
+  border: none;
+}
 
 
-.typeDown .remote.remoteIsActive {
+.remoteDot {
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  transform: translateX(-50%);
+  z-index: 2;
+  border-radius: 100px;
+}
+
+
+
+.typeDown .remote.remoteIsActive .remoteDot {
   background: var(--color-choreo-down);
 }
 
-.typeUp .remote.remoteIsActive {
+.typeUp .remote.remoteIsActive .remoteDot {
   background: var(--color-choreo-up);
 }
 
 .typePause .remote.remoteIsActive {
-  background: var(--color-choreo-pause);
+  /*background: var(--color-choreo-pause);*/
 }
 
-.typeStop .remote.remoteIsActive {
+.typeStop .remote.remoteIsActive .remoteDot {
   background: var(--color-choreo-stop);
 }
 
-.typeNone .remote.remoteIsActive {
+.typeNone .remote.remoteIsActive .remoteDot {
   background: var(--color-choreo-none);
 }

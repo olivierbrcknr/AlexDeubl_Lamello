@@ -10,7 +10,9 @@ const ChoreoVisualizer = (props) => {
   let totalTime = 0
 
   for ( let i = 0; i < props.choreo.length; i++ ){
-    totalTime += parseInt( props.choreo[i].duration )
+    if( props.choreo[i].type === 'pause' ){
+      totalTime += parseInt( props.choreo[i].duration )
+    }
   }
 
   const choreoSteps = props.choreo.map( (c,k) =>{
@@ -39,18 +41,22 @@ const ChoreoVisualizer = (props) => {
 
     for ( let r = 1; r <= 4; r++ ){
 
-      remoteVis.push( <div className={`${styles.remote} ${ c.remotes.includes(r) || c.type === 'pause' ? styles.remoteIsActive : "" }`}>{/*r*/}</div> )
+      remoteVis.push( <div className={`${styles.remote} ${ c.remotes.includes(r) || c.type === 'pause' ? styles.remoteIsActive : "" }`}>
+        <div className={styles.remoteDot}></div>
+      </div> )
     }
 
-    const stepWidth = c.duration / totalTime * 100 + '%'
+    let stepWidth = c.duration / totalTime * 100 + '%'
+
+    if( c.type !== 'pause' ){
+      stepWidth = 0
+    }
 
     return <div className={stepClasses.join(' ')} key={`OnDeviceChoreo-Part-${k}`} style={{
       width: stepWidth
     }}>
 
-      <div className={styles.stepLabel}>
-        {c.type} {c.duration}s
-      </div>
+      { c.type === 'pause' ? <div className={styles.stepLabel}>{c.duration}s</div> : null}
 
       {remoteVis}
     </div>
